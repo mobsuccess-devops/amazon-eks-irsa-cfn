@@ -1,0 +1,24 @@
+# DO NOT EDIT: BEGIN
+# This snippet has been inserted automatically by mobsuccessbot, do not edit!
+# If changes are needed, update the action cloudformation in
+# https://github.com/mobsuccess-devops/github-mobsuccess-policy
+name: CloudFormation
+
+on:
+  merge_group:
+    types: [checks_requested]
+  push:
+    branches: [master, preprod, prod]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  cloudformation:
+    name: CloudFormation
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: CloudFormation Lint
+        uses: docker://public.ecr.aws/u9q7y3l4/github-actions-cloudformationlint
+# DO NOT EDIT: END
